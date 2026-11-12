@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarojini Dental — Website Editor</title>
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d0f;--s1:#141416;--s2:#1c1c1f;--s3:#242428;
+  --bd:rgba(255,255,255,0.07);--bdh:rgba(255,255,255,0.13);
+  --tx:#f0f0f0;--tx2:#9a9a9a;--tx3:#4a4a4a;
+  --gr:#00c896;--grd:rgba(0,200,150,0.1);--grb:rgba(0,200,150,0.28);
+  --rd:#ff5555;--rdd:rgba(255,85,85,0.1);
+  --gd:#f5c842;--gdd:rgba(245,200,66,0.1);
+  --font:'DM Sans',sans-serif;--r:10px;--rs:6px;--sb:240px;--hh:56px;
+}
+html{font-size:14px}
+body{font-family:var(--font);background:var(--bg);color:var(--tx);min-height:100vh;display:flex;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* LOGIN */
+#loginWrap{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999}
+.lcard{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:40px;width:360px;text-align:center}
+.llogo{width:52px;height:52px;background:var(--grd);border:1px solid var(--grb);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.llogo svg{width:26px;height:26px;fill:none;stroke:var(--gr);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.lcard h2{font-size:1.2rem;font-weight:700;margin-bottom:4px}
+.lcard p{color:var(--tx2);font-size:0.82rem;margin-bottom:28px}
+.lf{margin-bottom:14px;text-align:left}
+.lf label{display:block;font-size:0.72rem;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px}
+.lf input{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:var(--rs);padding:10px 14px;color:var(--tx);font-family:var(--font);font-size:0.88rem;outline:none;transition:border-color 0.18s}
+.lf input:focus{border-color:var(--gr)}
+#lerr{color:var(--rd);font-size:0.78rem;margin-bottom:10px;padding:8px 12px;background:var(--rdd);border-radius:var(--rs);display:none}
+.lbtn{width:100%;background:var(--gr);color:#0a0a0a;border:none;padding:12px;border-radius:var(--rs);font-size:0.9rem;font-weight:700;cursor:pointer;font-family:var(--font);transition:opacity 0.18s;margin-top:4px}
+.lbtn:hover{opacity:0.88}
+.lforgot{background:none;border:none;color:var(--tx2);font-family:var(--font);font-size:0.8rem;margin-top:14px;cursor:pointer;text-decoration:underline;padding:6px}
+.lforgot:hover{color:var(--gr)}
+#lerr.ok{color:var(--gr);background:var(--grd)}
+
+/* SIDEBAR */
+.sidebar{width:var(--sb);height:100vh;position:fixed;top:0;left:0;background:var(--s1);border-right:1px solid var(--bd);display:flex;flex-direction:column;z-index:100;overflow-y:auto}
+.sbh{padding:16px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px;position:sticky;top:0;background:var(--s1);z-index:1}
+.sblogo{width:34px;height:34px;background:var(--grd);border:1px solid var(--grb);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sblogo svg{width:18px;height:18px;fill:none;stroke:var(--gr);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sbtitle{font-size:0.84rem;font-weight:700;line-height:1.3}
+.sbtitle span{display:block;font-size:0.68rem;color:var(--tx2);font-weight:400}
+.sbnav{padding:10px 8px;flex:1}
+.ngrp{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx3);padding:10px 10px 4px}
+.ni{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--rs);cursor:pointer;color:var(--tx2);font-size:0.83rem;font-weight:500;transition:all 0.18s;margin-bottom:1px;border:1px solid transparent;user-select:none}
+.ni:hover{background:var(--s2);color:var(--tx)}
+.ni.active{background:var(--grd);color:var(--gr);border-color:var(--grb)}
+.ni svg{width:15px;height:15px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sbfoot{padding:10px 8px;border-top:1px solid var(--bd)}
+.sbu{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--rs);cursor:pointer;transition:background 0.18s}
+.sbu:hover{background:var(--s2)}
+.av{width:28px;height:28px;border-radius:50%;background:var(--gr);color:#0a0a0a;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.7rem;flex-shrink:0}
+.un{font-size:0.8rem;font-weight:600}
+.ur{font-size:0.67rem;color:var(--tx2)}
+.logoutbtn{background:none;border:none;color:var(--tx2);cursor:pointer;font-size:0.75rem;font-family:var(--font);transition:color 0.18s;margin-left:auto;display:flex;align-items:center}
+.logoutbtn:hover{color:var(--rd)}
+.logoutbtn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* MAIN */
+.main{margin-left:var(--sb);flex:1;display:flex;flex-direction:column;min-height:100vh}
+.topbar{height:var(--hh);background:var(--s1);border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:50}
+#tbtitle{font-size:0.9rem;font-weight:600;color:var(--tx2)}
+.tbr{display:flex;align-items:center;gap:8px}
+.fbstatus{margin:12px 24px 0;background:var(--gdd);border:1px solid rgba(245,200,66,0.22);border-radius:var(--rs);padding:10px 14px;font-size:0.78rem;color:var(--gd);display:flex;align-items:center;gap:8px}
+.fbstatus.ok{background:var(--grd);border-color:var(--grb);color:var(--gr)}
+.fbstatus.err{background:var(--rdd);border-color:rgba(255,85,85,0.25);color:var(--rd)}
+.fbstatus svg{width:14px;height:14px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ldot{display:flex;align-items:center;gap:5px;font-size:0.73rem;color:var(--tx2)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--gr);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.btn{padding:7px 14px;border-radius:var(--rs);font-size:0.78rem;font-weight:600;cursor:pointer;border:none;font-family:var(--font);transition:all 0.18s;display:inline-flex;align-items:center;gap:6px}
+.btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.bg{background:var(--gr);color:#0a0a0a}
+.bg:hover{opacity:0.88;transform:translateY(-1px)}
+.bgh{background:transparent;color:var(--tx2);border:1px solid var(--bd)}
+.bgh:hover{border-color:var(--bdh);color:var(--tx)}
+.brd{background:var(--rdd);color:var(--rd);border:1px solid rgba(255,85,85,0.2)}
+.brd:hover{background:rgba(255,85,85,0.2)}
+
+/* CONTENT */
+.content{flex:1;padding:24px;overflow-y:auto;max-width:1000px;margin:0 auto;width:100%}
+.panel{display:none;animation:fIn 0.2s ease}
+.panel.active{display:block}
+@keyframes fIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* CARDS */
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);margin-bottom:16px;overflow:hidden}
+.ch{padding:14px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between}
+.chl{display:flex;align-items:center;gap:8px}
+.chi{width:28px;height:28px;background:var(--grd);border:1px solid var(--grb);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chi svg{width:14px;height:14px;fill:none;stroke:var(--gr);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ct{font-size:0.87rem;font-weight:600}
+.cs{font-size:0.72rem;color:var(--tx2);margin-top:1px}
+.cb{padding:18px}
+
+/* FORMS */
+.fl{margin-bottom:14px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px}
+.lbl{display:block;font-size:0.7rem;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px}
+input[type=text],input[type=url],input[type=tel],input[type=password],input[type=time],textarea,select{
+  width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:var(--rs);
+  padding:9px 12px;color:var(--tx);font-family:var(--font);font-size:0.84rem;outline:none;transition:border-color 0.18s
+}
+input:focus,textarea:focus,select:focus{border-color:var(--gr)}
+select option{background:var(--s2)}
+textarea{resize:vertical;min-height:76px}
+.hint{font-size:0.68rem;color:var(--tx3);margin-top:3px}
+.divider{border:none;border-top:1px solid var(--bd);margin:16px 0}
+.stitle{font-size:0.82rem;font-weight:600;color:var(--tx);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.stitle svg{width:14px;height:14px;fill:none;stroke:var(--gr);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* LIST ITEMS */
+.li{background:var(--s2);border:1px solid var(--bd);border-radius:var(--rs);padding:12px 14px;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;transition:border-color 0.18s}
+.li:hover{border-color:var(--bdh)}
+.lib{flex:1;min-width:0}
+.lit{font-size:0.83rem;font-weight:500;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lis{font-size:0.72rem;color:var(--tx2)}
+.lia{display:flex;gap:5px;flex-shrink:0;align-items:center}
+.ib{background:var(--s3);border:none;border-radius:var(--rs);width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--tx2);transition:all 0.18s}
+.ib svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ib:hover{background:var(--bdh);color:var(--tx)}
+.ib.d:hover{background:var(--rdd);color:var(--rd)}
+.ib.ed:hover{background:var(--grd);color:var(--gr)}
+.addbtn{display:flex;align-items:center;gap:8px;padding:9px 14px;border:1.5px dashed var(--bd);border-radius:var(--rs);cursor:pointer;color:var(--tx2);font-size:0.81rem;transition:all 0.18s;background:none;width:100%;font-family:var(--font)}
+.addbtn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.addbtn:hover{border-color:var(--grb);color:var(--gr);background:var(--grd)}
+
+/* SLOTS */
+.sag{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px}
+.sp{background:var(--s2);border:1px solid var(--grb);border-radius:var(--rs);padding:9px 8px;text-align:center;cursor:pointer;transition:all 0.18s;position:relative}
+.sp.bk{border-color:rgba(255,85,85,0.35);background:var(--rdd)}
+.spt{font-size:0.79rem;font-weight:600}
+.sps{font-size:0.64rem;color:var(--tx2);margin-top:2px}
+.spx{position:absolute;top:3px;right:4px;background:var(--s3);border:none;border-radius:50%;width:15px;height:15px;font-size:0.55rem;cursor:pointer;color:var(--tx2);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.15s}
+.sp:hover .spx{opacity:1}
+.spx:hover{color:var(--rd)}
+
+/* TOGGLE */
+.trow{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--bd)}
+.trow:last-child{border-bottom:none}
+.tgl{font-size:0.84rem}
+.tgd{font-size:0.71rem;color:var(--tx2);margin-top:2px}
+.toggle{position:relative;width:36px;height:20px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.tsl{position:absolute;inset:0;background:var(--s3);border-radius:10px;cursor:pointer;transition:background 0.18s}
+.tsl::before{content:'';position:absolute;width:14px;height:14px;background:var(--tx2);border-radius:50%;top:3px;left:3px;transition:all 0.18s}
+.toggle input:checked+.tsl{background:var(--gr)}
+.toggle input:checked+.tsl::before{transform:translateX(16px);background:#0a0a0a}
+
+/* STARS */
+.starrow{display:flex;gap:4px}
+.star{font-size:1.3rem;cursor:pointer;opacity:0.25;transition:opacity 0.15s;background:none;border:none;color:var(--gd);font-family:serif;padding:0}
+.star.on{opacity:1}
+
+/* STATS CARDS */
+.scards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.scard{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:16px 18px}
+.scv{font-size:1.5rem;font-weight:700;margin-bottom:2px}
+.scl{font-size:0.73rem;color:var(--tx2)}
+
+/* TOAST */
+#toast{position:fixed;bottom:22px;right:22px;background:var(--s1);border:1px solid var(--grb);color:var(--tx);padding:11px 18px;border-radius:var(--r);font-size:0.81rem;display:flex;align-items:center;gap:8px;z-index:9999;transform:translateY(80px);opacity:0;transition:all 0.3s;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+#toast.show{transform:none;opacity:1}
+#toast.err{border-color:rgba(255,85,85,0.4)}
+
+/* MODAL */
+.mov{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.mov.open{display:flex}
+.mbox{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:26px;width:90%;max-width:480px;animation:fIn 0.2s ease}
+.mbox h3{font-size:0.95rem;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.mbox h3 svg{width:15px;height:15px;fill:none;stroke:var(--gr);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mfoot{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+
+/* NOTICE */
+.notice{background:var(--gdd);border:1px solid rgba(245,200,66,0.22);border-radius:var(--rs);padding:10px 14px;display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;font-size:0.79rem;color:var(--gd)}
+.notice svg{width:14px;height:14px;flex-shrink:0;margin-top:1px;fill:none;stroke:var(--gd);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+@media(max-width:900px){.scards{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.sidebar{transform:translateX(-100%);transition:transform 0.3s}.sidebar.mopen{transform:none}.main{margin-left:0}.scards{grid-template-columns:1fr 1fr}.g2{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+
+<svg style="display:none">
+  <symbol id="si-tooth" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3.5c-2.5 0-4.5 2.3-4.5 5.2 0 4.3 2.2 11.8 4.8 11.8 1.3 0 1.7-4.2 3.2-4.2s1.9 4.2 3.2 4.2c2.6 0 4.8-7.5 4.8-11.8 0-2.9-2-5.2-4.5-5.2-1.6 0-2.4.7-3.5.7s-1.9-.7-3.5-.7z"/></symbol>
+  <symbol id="si-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+  <symbol id="si-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></symbol>
+  <symbol id="si-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zM8 12h8M12 8v8"/></symbol>
+  <symbol id="si-doctor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="si-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></symbol>
+  <symbol id="si-quote" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></symbol>
+  <symbol id="si-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></symbol>
+  <symbol id="si-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-5.2 7-12a7 7 0 0 0-14 0c0 6.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="si-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="si-seo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></symbol>
+  <symbol id="si-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
+  <symbol id="si-logout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></symbol>
+  <symbol id="si-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></symbol>
+  <symbol id="si-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="si-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></symbol>
+  <symbol id="si-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></symbol>
+  <symbol id="si-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="si-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="si-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+  <symbol id="si-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></symbol>
+  <symbol id="si-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-5"/></symbol>
+</svg>
+
+<!-- LOGIN -->
+<div id="loginWrap">
+  <div class="lcard">
+    <div class="llogo"><svg viewBox="0 0 24 24"><use href="#si-tooth"/></svg></div>
+    <h2>Website Editor</h2>
+    <p>Sarojini Dental Clinic · Srikakulam</p>
+    <div class="lf"><label>Admin Email</label><input type="email" id="lu" autocomplete="username" placeholder="your-admin-email@example.com"></div>
+    <div class="lf"><label>Firebase Password</label><input type="password" id="lp" autocomplete="current-password" placeholder="Your Firebase password"></div>
+    <div id="lerr"></div>
+    <button class="lbtn" onclick="doLogin()">Sign In →</button>
+    <button type="button" class="lforgot" onclick="doReset()">Forgot password?</button>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sbh">
+    <div class="sblogo"><svg viewBox="0 0 24 24"><use href="#si-tooth"/></svg></div>
+    <div class="sbtitle">Website Editor <span>Sarojini Dental</span></div>
+  </div>
+  <nav class="sbnav">
+    <div class="ngrp">Overview</div>
+    <div class="ni active" onclick="nav('dashboard',this)"><svg viewBox="0 0 24 24"><use href="#si-home"/></svg> Dashboard</div>
+    <div class="ngrp">Website Sections</div>
+    <div class="ni" onclick="nav('hero',this)"><svg viewBox="0 0 24 24"><use href="#si-home"/></svg> Top Banner</div>
+    <div class="ni" onclick="nav('features',this)"><svg viewBox="0 0 24 24"><use href="#si-sparkle"/></svg> Why Choose Us</div>
+    <div class="ni" onclick="nav('services',this)"><svg viewBox="0 0 24 24"><use href="#si-cross"/></svg> Treatments</div>
+    <div class="ni" onclick="nav('doctors',this)"><svg viewBox="0 0 24 24"><use href="#si-doctor"/></svg> Our Doctors</div>
+    <div class="ni" onclick="nav('about',this)"><svg viewBox="0 0 24 24"><use href="#si-info"/></svg> About Us</div>
+    <div class="ni" onclick="nav('testimonials',this)"><svg viewBox="0 0 24 24"><use href="#si-quote"/></svg> Patient Reviews</div>
+    <div class="ni" onclick="nav('booking',this)"><svg viewBox="0 0 24 24"><use href="#si-calendar"/></svg> Booking &amp; Slots</div>
+    <div class="ni" onclick="nav('contact',this)"><svg viewBox="0 0 24 24"><use href="#si-pin"/></svg> Address &amp; Map</div>
+    <div class="ni" onclick="nav('footer',this)"><svg viewBox="0 0 24 24"><use href="#si-link"/></svg> Footer</div>
+    <div class="ngrp">Settings</div>
+    <div class="ni" onclick="nav('seo',this)"><svg viewBox="0 0 24 24"><use href="#si-seo"/></svg> Google SEO</div>
+    <div class="ni" onclick="nav('settings',this)"><svg viewBox="0 0 24 24"><use href="#si-settings"/></svg> Settings</div>
+  </nav>
+  <div class="sbfoot">
+    <div class="sbu">
+      <div class="av">SA</div>
+      <div><div class="un">Admin</div><div class="ur">Sarojini Dental</div></div>
+      <button class="logoutbtn" onclick="doLogout()" title="Sign out"><svg viewBox="0 0 24 24"><use href="#si-logout"/></svg></button>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main" id="mainApp" style="display:none">
+  <div class="topbar">
+    <div id="tbtitle">Dashboard</div>
+    <div class="tbr">
+      <div class="ldot"><div class="dot"></div> Live</div>
+      <a href="/" target="_blank" rel="noopener"><button class="btn bgh"><svg viewBox="0 0 24 24"><use href="#si-eye"/></svg> View Site</button></a>
+      <button class="btn bg" onclick="saveAll()"><svg viewBox="0 0 24 24"><use href="#si-save"/></svg> Save &amp; Publish</button>
+    </div>
+  </div>
+
+  <div class="fbstatus" id="fbStatus"><svg viewBox="0 0 24 24"><use href="#si-warn"/></svg><span>Firebase sync not checked yet.</span></div>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div class="panel active" id="panel-dashboard">
+      <div class="scards">
+        <div class="scard"><div class="scv" style="color:var(--gr)">🟢 Live</div><div class="scl">Website Status</div></div>
+        <div class="scard"><div class="scv" id="d-doctors">2</div><div class="scl">Doctors Listed</div></div>
+        <div class="scard"><div class="scv" id="d-reviews">6</div><div class="scl">Patient Reviews</div></div>
+        <div class="scard"><div class="scv" id="d-slots">12</div><div class="scl">Open Time Slots</div></div>
+      </div>
+      <div class="notice"><svg viewBox="0 0 24 24"><use href="#si-warn"/></svg><span>Make your changes in any section, then click <strong>Save &amp; Publish</strong> (top right). Your website updates <strong>instantly</strong> — no uploads needed!</span></div>
+      <div class="card">
+        <div class="ch"><div class="chl"><div class="chi"><svg viewBox="0 0 24 24"><use href="#si-sparkle"/></svg></div><div><div class="ct">Quick Edit</div><div class="cs">Jump to any section</div></div></div></div>
+        <div class="cb" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          <button class="addbtn" onclick="nav('hero',qn('hero'))"><svg viewBox="0 0 24 24"><use href="#si-home"/></svg> Top Banner</button>
+          <button class="addbtn" onclick="nav('services',qn('services'))"><svg viewBox="0 0 24 24"><use href="#si-cross"/></svg> Treatments</button>
+          <button class="addbtn" onclick="nav('doctors',qn('doctors'))"><svg viewBox="0 0 24 24"><use href="#si-doctor"/></svg> Doctors</button>
+          <button class="addbtn" onclick="nav('testimonials',qn('testimonials'))"><svg viewBox="0 0 24 24"><use href="#si-quote"/></svg> Reviews</button>
+          <button class="addbtn" onclick="nav('booking',qn('booking'))"><svg viewBox="0 0 24 24"><use href="#si-calendar"/></svg> Booking</button>
+          <button class="addbtn" onclick="nav('contact',qn('contact'))"><svg viewBox="0 0 24 24"><use href="#si-pin"/></svg> Contact</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="panel" id="panel-hero">
+      <div class="card">
+        <div class="ch"><div class="chl"><div class="chi"><svg viewBox="0 0 24 24"><use href="#si-home"/></svg></div><div><div class="ct">Top Banner</div><div class="cs">The very first thing visitors see</div></div></div></div>
+        <div class="cb">
+          <div class="fl"><label class="lbl">Badge text (small label above headline)</label><input type="text" id="hero_badge"></div>
+          <div class="fl"><label class="lbl">Main Headline</label><input type="text" id="hero_headline"></div>
+          <div class="g2">
+            <div class="fl"><label class="lbl">Highlighted word in headline (shows in teal colour)</label><input type="text" id="hero_highlight"><div class="hint">e.g. type: Smile</div></div>
+            <div class="fl"><label class="lbl">Banner photo URL</label><input type="url" id="hero_img"><div class="hint">Paste any image link here</div></div>
+          </div>
+          <div class="fl"><label class="lbl">Description under headline</label><textarea id="hero_sub"></textarea></div>
+          <div class="g3">
+            <div class="fl"><label class="lbl">Button 1 Text</label><input type="text" id="hero_btn1_text"></div>
+            <div class="fl"><label class="lbl">Button 1 Link</label><input type="text" id="hero_btn1_link" placeholder="#booking"></div>
+            <div class="fl"><label class="lbl">Button 2 Text</label><input type="text" id="hero_btn2_text"></div>
+          </div>
+          <hr class="divider">
+          <div class="stitle"><svg viewBox="0 0 24 24"><use href="#si-sparkle"/></svg> Rating Card (shown on the photo)</div>
+          <div class="g3">
+            <div class="fl"><label class="lbl">Rating Text</label><input type="text" id="hero_rating"></div>
+            <div class="fl"><label class="lbl">Stars</label><input type="text" id="hero_stars"></div>
+            <div class="fl"><label class="lbl">Review Count</label><input type="text" id="hero_reviews"></div>
+          </div>
+          <hr class="divider">
+          <div class="stitle"><svg viewBox="0 0 24 24"><use href="#si-sparkle"/></svg> Numbers Bar (e.g. 5000+ Patients)</div>
+          <div id="stats-list"></div>
+          <button class="addbtn" onclick="addStat()"><svg viewBox="0 0 24 24"><use href="#si-plus"/></svg> Add Number</button>
+          <hr class="divider">
+          <div class="stitle"><svg viewBox="0 0 24 24"><use href="#si-sparkle"/></svg> Scrolling Services Bar</div>
+          <div class="fl"><label class="lbl">Services — separate with commas</label><textarea id="marquee_items" style="min-height:55px"></textarea></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="panel" id="panel-features">
+      <div class="card">
+        <div class="ch"><div class="chl"><div class="chi"><svg viewBox="0 0 24 24"><use href="#si-sparkle"/></svg></div><div><div class="ct">Why Choose Us</div><div class="cs">4 feature cards explaining your strengths</div></div></div></div>
+        <div class="cb">
+          <div class="g2">
+            <div class="fl"><label class="lbl">Section Heading</label><input type="text" id="feat_title"></div>
+            <div class="fl"><label class="lbl">Small label above heading</label><input type="text" id="feat_label"></div>
+          </div>
+          <div class="fl"><label class="lbl">Description</label><textarea id="feat_desc"></textarea></div>
+          <hr class="divider">
+          <div class="stitle"><svg viewBox="0 0 24 24"><use href="#si-sparkle"/></svg> Feature Cards</div>
+          <div id="features-list"></div>
+          <button class="addbtn" onclick="addFeature()"><svg viewBox="0 0 24 24"><use href="#si-plus"/></svg> Add Feature Card</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="panel" id="panel-services">
+      <div class="card">
+        <div class="ch"><div class="chl"><div class="chi"><svg viewBox="0 0 24 24"><use href="#si-cross"/></svg></div><div><div class="ct">Treatments / Services</div><div class="cs">Featured treatment cards and full services list</div></div></div></div>
+        <div class="cb">
+          <div class="g2">
+            <div class="fl"><label class="lbl">Section Heading</label><input type="text" id="srv_title"></div>
+            <div class="fl"><label class="lbl">Small Label</label><input type="text" id="srv_label"></div>
+          </div>
+          <div class="fl"><label class="lbl">Description</label><textarea id="srv_desc"></textarea></div>
+          <hr class="divider">
+          <div class="stitle"><svg viewBox="0 0 24 24"><use href="#si-cross"/></svg> Featured Treatment Cards (with photos)</div>
+          <div id="services-list"></div>
+          <button class="addbtn" onclick="addService()"><svg viewBox="0 0 24 24"><use href="#si-plus"/></svg> Add Treatment</button>
+          <hr class="divider">
+          <div class="stitle"><svg viewBox="0 0 24 24"><use href="#si-check"/></svg> Full Services List (tick marks)</div>
+          <div class="fl"><label class="lbl">One service per line</label><textarea id="all_services" style="min-height:180px"></textarea></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOCTORS -->
+    <div class="panel" id="panel-doctors">
+      <div class="card">
+        <div class="ch"><div class="chl"><div class="chi"><svg viewBox="0 0 24 24"><use href="#si-doctor"/></svg></div><div><div class="ct">Our Doctors</div><div class="cs">Doctor profiles, photos, qualifications and bio</div></div></div><button class="btn bg" onclick="addDoctor()"><svg viewBox="0 0 24 24"><use href="#si-plus"/></svg> Add Doctor</button></div>
+        <div class="cb">
+          <div class="g2">
+            <div class="fl"><label class="lbl">Section Heading</label><input type="text" id="doc_title"></div>
+            <div class="fl"><label class="lbl">Small Label</label><input type="text" id="doc_label"></div>
+          </div>
+          <div class="fl"><label class="lbl">Description</label><textarea id="doc_desc"></textarea></div>
+          <hr class="divider">
+          <div id="doctors-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="panel" id="panel-about">
+      <div class="card">
+        <div class="ch"><div class="chl"><div class="chi"><svg viewBox="0 0 24 24"><use href="#si-info"/></svg></div><div><div class="ct">About Us</div><div class="cs">Clinic description, gallery photos and key points</div></div></div></div>
+        <div class="cb">
+          <div class="g2">
+            <div class="fl"><label class="lbl">Section Heading</label><input type="text" id="about_title"></div>
+            <div class="fl"><label class="lbl">Small Label</label><input type="text" id="about_label"></div>
+          </div>
+          <div class="fl"><label class="lbl">Description Paragraph</label><textarea id="about_desc"></textarea></div>
+          <hr class="divider">
+          <div class="stitle"><svg viewBox="0 0 24 24"><use href="#si-eye"/></svg> Clinic Gallery Photos</div>
+          <div class="g3">
+            <div class="fl"><label class="lbl">Photo 1 URL (large top photo)</label><input type="url" id="about_img1"><div class="hint">e.g. d1.webp or full https:// link</div></div>
+            <div class="fl"><label class="lbl">Photo 2 URL</label><input type="url" id="about_img2"></div>
+            <div class="fl"><label class="lbl">Photo 3 URL</label><input type="url" id="about_img3"></div>
+          </div>
+          <hr class="divider">
+          <div class="stitle"><svg viewBox="0 0 24 24"><use href="#si-check"/></svg> Key Points (tick list)</div>
+          <div id="about-points-list"></div>
+          <button class="addbtn" onclick="addAboutPoint()"><svg viewBox="0 0 24 24"><use href="#si-plus"/></svg> Add Point</button>
+          <hr class="divider">
+          <div class="g2">
+            <div class="fl"><label class="lbl">Button Text</label><input type="text" id="about_btn"></div>
+            <div class="fl"><label class="lbl">Button Link</label><input type="text" id="about_btn_link"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="panel" id="panel-testimonials">
+      <div class="card">
+        <div class="ch"><div class="chl"><div class="chi"><svg viewBox="0 0 24 24"><use href="#si-quote"/></svg></div><div><div class="ct">Patient Reviews</div><div class="cs">Add, edit or remove patient testimonials</div></div></div><button class="btn bg" onclick="addReview()"><svg viewBox="0 0 24 24"><use href="#si-plus"/></svg> Add Review</button></div>
+        <div class="cb">
+          <div class="g2">
+            <div class="fl"><label class="lbl">Section Heading</label><input type="text" id="testi_title"></div>
+            <div class="fl"><label class="lbl">Small Label</label><input type="text" id="testi_label"></div>
+          </div>
+          <div class="g2">
+            <div class="fl"><label class="lbl">Overall Rating (e.g. 4.9/5)</label><input type="text" id="testi_rating"></div>
+            <div class="fl"><label class="lbl">Review Count Text</label><input type="text" id="testi_count"></div>
+          </div>
+          <hr class="divider">
+          <div id="reviews-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOKING -->
+    <div class="panel" id="panel-booking">
+      <div class="card">
+        <div class="ch"><div class="chl"><div class="chi"><svg viewBox="0 0 24 24"><use href="#si-calendar"/></svg></div><div><div class="ct">Booking &amp; Time Slots</div><div class="cs">WhatsApp number, slots, services dropdown</div></div></div></div>
+        <div class="cb">
+          <div class="g2">
+            <div class="fl"><label class="lbl">Section Heading</label><input type="text" id="book_title"></div>
+            <div class="fl"><label class="lbl">Small Label</label><input type="text" id="book_label"></div>
+          </div>
+          <div class="fl"><label class="lbl">Description</label><textarea id="book_desc"></textarea></div>
+          <div class="g2">
+            <div class="fl"><label class="lbl">📱 WhatsApp Number (with country code, no spaces or +)</label><input type="tel" id="book_wa" placeholder="918500618926"><div class="hint">Start with 91 for India. Example: 918500618926</div></div>
+            <div class="fl"><label class="lbl">Phone number shown on website</label><input type="text" id="book_phone" placeholder="085006 18926"></div>
+          </div>
+          <div class="fl"><label class="lbl">WhatsApp pre-filled message (what patients see when they tap the button)</label><textarea id="book_wa_msg"></textarea></div>
+          <hr class="divider">
+          <div class="stitle"><svg viewBox="0 0 24 24"><use href="#si-clock"/></svg> Time Slots — tap to toggle Available / Booked</div>
+          <div class="hint" style="margin-bottom:12px">🟢 Green border = Available &nbsp;·&nbsp; 🔴 Red = Booked (patients can't select booked slots)</div>
+          <div class="sag" id="slots-admin"></div>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap">
+            <input type="time" id="new-slot-time" style="width:130px">
+            <button class="btn bgh" onclick="addSlot()"><svg viewBox="0 0 24 24"><use href="#si-plus"/></svg> Add Time Slot</button>
+          </div>
+          <hr class="divider">
+          <div class="fl"><label class="lbl">Services in dropdown (one per line)</label><textarea id="book_services" style="min-height:180px"></textarea></div>
+          <div class="fl"><label class="lbl">Booking perks list (one per line, shown on left side)</label><textarea id="book_perks"></textarea></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="panel" id="panel-contact">
+      <div class="card">
+        <div class="ch"><div class="chl"><div class="chi"><svg viewBox="0 0 24 24"><use href="#si-pin"/></svg></div><div><div class="ct">Address &amp; Map</div><div class="cs">Clinic location, phone, hours and Google map</div></div></div></div>
+        <div class="cb">
+          <div class="g2">
+            <div class="fl"><label class="lbl">Section Heading</label><input type="text" id="con_title"></div>
+            <div class="fl"><label class="lbl">Small Label</label><input type="text" id="con_label"></div>
+          </div>
+          <div class="fl"><label class="lbl">Full Clinic Address</label><textarea id="con_address" style="min-height:60px"></textarea></div>
+          <div class="g2">
+            <div class="fl"><label class="lbl">Phone (for call links — no spaces)</label><input type="tel" id="con_phone" placeholder="08500618926"></div>
+            <div class="fl"><label class="lbl">Phone shown on website</label><input type="text" id="con_phone_display" placeholder="085006 18926"></div>
+          </div>
+          <div class="g2">
+            <div class="fl"><label class="lbl">Opening Days</label><input type="text" id="con_hours1" placeholder="Monday – Sunday"></div>
+            <div class="fl"><label class="lbl">Opening Hours</label><input type="text" id="con_hours2" placeholder="9:00 AM – 9:00 PM (All Days)"></div>
+          </div>
+          <div class="g2">
+            <div class="fl"><label class="lbl">Google Maps direction URL</label><input type="url" id="con_gmaps"><div class="hint">Paste the Google Maps share link here</div></div>
+            <div class="fl"><label class="lbl">WhatsApp Number (with country code)</label><input type="tel" id="con_wa" placeholder="918500618926"></div>
+          </div>
+          <div class="fl"><label class="lbl">Google Maps Embed URL</label><textarea id="con_map_embed" style="min-height:70px;font-size:0.72rem"></textarea><div class="hint">Google Maps → Share → Embed a map → copy the src="…" value from the iframe code</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="panel" id="panel-footer">
+      <div class="card">
+        <div class="ch"><div class="chl"><div class="chi"><svg viewBox="0 0 24 24"><use href="#si-link"/></svg></div><div><div class="ct">Footer</div><div class="cs">Bottom section of your website</div></div></div></div>
+        <div class="cb">
+          <div class="fl"><label class="lbl">Clinic Name in footer</label><input type="text" id="foot_name"></div>
+          <div class="fl"><label class="lbl">Short Description</label><textarea id="foot_desc"></textarea></div>
+          <div class="g2">
+            <div class="fl"><label class="lbl">Rating Line</label><input type="text" id="foot_rating"></div>
+            <div class="fl"><label class="lbl">Copyright Text</label><input type="text" id="foot_copy"></div>
+          </div>
+          <div class="fl"><label class="lbl">Footer service links (one per line)</label><textarea id="foot_services"></textarea></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO -->
+    <div class="panel" id="panel-seo">
+      <div class="card">
+        <div class="ch"><div class="chl"><div class="chi"><svg viewBox="0 0 24 24"><use href="#si-seo"/></svg></div><div><div class="ct">Google SEO</div><div class="cs">Helps your clinic rank higher in Google search results</div></div></div></div>
+        <div class="cb">
+          <div class="fl"><label class="lbl">Page Title (shows in browser tab and Google results)</label><input type="text" id="seo_title"></div>
+          <div class="fl"><label class="lbl">Meta Description (the text shown under your link in Google — keep under 160 characters)</label><textarea id="seo_desc" style="min-height:60px"></textarea></div>
+          <div class="fl"><label class="lbl">Keywords — separate with commas</label><textarea id="seo_kw" style="min-height:55px"></textarea></div>
+          <div class="g2">
+            <div class="fl"><label class="lbl">Social share image URL</label><input type="url" id="seo_og_img"><div class="hint">Shown when sharing your link on WhatsApp or Facebook</div></div>
+            <div class="fl"><label class="lbl">Google Analytics ID</label><input type="text" id="seo_ga" placeholder="G-XXXXXXXXXX"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="panel" id="panel-settings">
+      <div class="card">
+        <div class="ch"><div class="chl"><div class="chi"><svg viewBox="0 0 24 24"><use href="#si-settings"/></svg></div><div><div class="ct">Settings</div></div></div></div>
+        <div class="cb">
+          <div class="stitle">Clinic Name &amp; Tagline (top-left logo area)</div>
+          <div class="g2">
+            <div class="fl"><label class="lbl">Clinic Short Name</label><input type="text" id="brand_name"></div>
+            <div class="fl"><label class="lbl">Tagline under name</label><input type="text" id="brand_tagline"></div>
+          </div>
+          <hr class="divider">
+          <div class="stitle"><svg viewBox="0 0 24 24"><use href="#si-shield"/></svg> Change Admin Password</div>
+          <div class="g2">
+            <div class="fl"><label class="lbl">New Password (min 6 characters)</label><input type="password" id="new_pass" autocomplete="new-password" placeholder="New password"></div>
+            <div class="fl"><label class="lbl">Confirm Password</label><input type="password" id="conf_pass" autocomplete="new-password" placeholder="Repeat new password"></div>
+          </div>
+          <button class="btn bgh" onclick="changePass()"><svg viewBox="0 0 24 24"><use href="#si-check"/></svg> Update Password</button>
+          <hr class="divider">
+          <div class="stitle" style="color:var(--rd)"><svg viewBox="0 0 24 24" style="stroke:var(--rd)"><use href="#si-warn"/></svg> Reset All Data</div>
+          <p style="font-size:0.8rem;color:var(--tx2);margin-bottom:12px">Resets all your edits back to the original defaults. Use only if something looks wrong.</p>
+          <button class="btn brd" onclick="if(confirm('Reset everything to default? All your changes will be lost.')){localStorage.removeItem('sd_config');localStorage.removeItem('sd_pass');location.reload();}"><svg viewBox="0 0 24 24"><use href="#si-warn"/></svg> Reset to Default</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<!-- REVIEW MODAL -->
+<div class="mov" id="revModal">
+  <div class="mbox">
+    <h3><svg viewBox="0 0 24 24"><use href="#si-quote"/></svg> <span id="revModalTitle">Add Patient Review</span></h3>
+    <div class="fl"><label class="lbl">Patient Name</label><input type="text" id="r_name" placeholder="e.g. Ravi Kumar"></div>
+    <div class="fl"><label class="lbl">Location</label><input type="text" id="r_loc" placeholder="e.g. Srikakulam"></div>
+    <div class="fl">
+      <label class="lbl">Star Rating</label>
+      <div class="starrow" id="rStars">
+        <button class="star on" onclick="setStar(1)">★</button>
+        <button class="star on" onclick="setStar(2)">★</button>
+        <button class="star on" onclick="setStar(3)">★</button>
+        <button class="star on" onclick="setStar(4)">★</button>
+        <button class="star on" onclick="setStar(5)">★</button>
+      </div>
+    </div>
+    <div class="fl"><label class="lbl">Review Text</label><textarea id="r_text" placeholder="What did the patient say about their experience?"></textarea></div>
+    <div class="mfoot">
+      <button class="btn bgh" onclick="closeMov('revModal')">Cancel</button>
+      <button class="btn bg" onclick="saveReview()"><svg viewBox="0 0 24 24"><use href="#si-check"/></svg> Save Review</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"><svg id="toast-icon" viewBox="0 0 24 24" style="width:14px;height:14px;flex-shrink:0;fill:none;stroke:var(--gr);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><use href="#si-check"/></svg> <span id="toast-msg">Saved!</span></div>
+
+<script>
+// Classic script is intentional: the existing admin UI uses inline onclick/onchange handlers.
+// Firebase SDKs are loaded asynchronously and exposed through window._sd_* so the rest of
+// this original admin application stays unchanged and globally callable.
+const _sdFirebaseReady = (async () => {
+  try {
+    const [{ initializeApp }, { getFirestore, doc, setDoc, getDoc }, { getAuth, signInWithEmailAndPassword, onAuthStateChanged, updatePassword, sendPasswordResetEmail }] = await Promise.all([
+      import("https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js"),
+      import("https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js"),
+      import("https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js")
+    ]);
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDEpkOusIkQ3e0ho2b_05Pb2xMiU7SC0VM",
+      authDomain: "dentalclinic-9fb20.firebaseapp.com",
+      projectId: "dentalclinic-9fb20",
+      storageBucket: "dentalclinic-9fb20.firebasestorage.app",
+      messagingSenderId: "115543235835",
+      appId: "1:115543235835:web:8caf15234b085f1529645e",
+      measurementId: "G-L3VGC6RT5B"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+    const configRef = doc(db, 'site', 'config');
+    const authRef = doc(db, 'site', 'auth');
+
+    window._sd_db = {
+      saveConfig(config) { return setDoc(configRef, { config, ts: Date.now() }); },
+      async loadConfig() {
+        const snap = await getDoc(configRef);
+        if (!snap.exists()) return null;
+        const data = snap.data();
+        return data && data.config ? data.config : data;
+      },
+      saveAuth(authData) { return setDoc(authRef, { ...authData, ts: Date.now() }); },
+      async loadAuth() {
+        const snap = await getDoc(authRef);
+        return snap.exists() ? snap.data() : null;
+      }
+    };
+    window._sd_auth = auth;
+    window._sd_signIn = signInWithEmailAndPassword;
+    window._sd_updatePassword = updatePassword;
+    window._sd_resetPassword = sendPasswordResetEmail;
+    window._sd_fbStatus = { ok: true, message: 'Firebase connected. Realtime sync is active.' };
+
+    try {
+      onAuthStateChanged(auth, user => {
+        if (user && typeof window.updateFirebaseStatus === 'function') {
+          window.updateFirebaseStatus(true, 'Signed in as ' + (user.email || 'admin'));
+        }
+      });
+    } catch (e) {
+      console.warn('Auth listener failed', e);
+    }
+
+    console.log('Firebase initialized for admin');
+    return window._sd_db;
+  } catch (error) {
+    window._sd_fbStatus = { ok: false, message: 'Firebase not connected. Publishing is unavailable until Firebase is connected.' };
+    console.error('Firebase init (admin) failed', error);
+    throw error;
+  }
+})();
+window._sd_firebase_ready = _sdFirebaseReady;
+// ═══════════════════════════════════════════════
+//  DEFAULTS
+// ═══════════════════════════════════════════════
+const DEFAULTS = {
+  hero_badge:"Srikakulam's #1 Rated Dental Clinic",
+  hero_headline:"Your Perfect Smile Starts Here in Srikakulam",
+  hero_highlight:"Smile",
+  hero_sub:"Expert dental care with Dr. Vijay Muddada & Dr. Lahari Perepu — combining advanced laser technology, implants & orthodontics for stunning, lasting results.",
+  hero_img:"https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&q=80",
+  hero_btn1_text:"Book Appointment",hero_btn1_link:"#booking",hero_btn2_text:"Call Us Now",
+  hero_rating:"4.9 / 5 Rating",hero_stars:"★★★★★",hero_reviews:"100+ Google Reviews",
+  marquee_items:"Dental Implants,Laser Dentistry,Tooth Aligners,Metal Braces,Teeth Whitening,Root Canals,Veneers & Crowns,Oral Surgery,Paediatric Dentistry,Smile Makeovers,Flap Surgery",
+  feat_label:"Why Choose Us",feat_title:"The Sarojini Difference",
+  feat_desc:"We combine advanced technology with compassionate care to deliver exceptional dental outcomes every single visit.",
+  srv_label:"Our Services",srv_title:"Comprehensive Dental Care",srv_desc:"From routine cleanings to complex implants — all under one roof in Srikakulam.",
+  doc_label:"Meet Our Experts",doc_title:"Trusted by Thousands in Srikakulam",doc_desc:"Our team of MDS-qualified specialists bring years of expertise and genuine passion for transforming smiles.",
+  about_label:"About Us",about_title:"Srikakulam's Premier Dental Destination",
+  about_desc:"Sarojini Laser, Implant and Orthodontic Dental Clinic is your trusted partner for comprehensive dental care in Srikakulam. We blend advanced technology with compassionate care, making every visit comfortable and every smile lasting.",
+  about_img1:"d1.webp",about_img2:"d2.webp",about_img3:"d3.webp",
+  about_btn:"Schedule Your Visit →",about_btn_link:"#booking",
+  testi_label:"Patient Reviews",testi_title:"What Our Patients Say",testi_rating:"4.9/5",testi_count:"100+ verified patient reviews",
+  book_label:"Book Appointment",book_title:"Schedule Your Visit Today",
+  book_desc:"Choose a convenient time slot and we'll confirm your appointment via WhatsApp instantly. Quick, easy, hassle-free.",
+  book_wa:"918500618926",book_phone:"085006 18926",
+  book_wa_msg:"Hello Doctor 🙏 I would like to book an appointment at Sarojini Laser, Implant & Orthodontic Dental Clinic, Srikakulam.",
+  book_services:"Dental Consultation / Check-up\nDental Implants\nTeeth Whitening\nBraces / Metal Braces\nClear Tooth Aligners\nRoot Canal Treatment\nVeneers & Crowns\nDentures & Bridges\nLaser Dentistry\nFlap Surgery\nOral Surgery\nPaediatric Dentistry\nFillings & Sealants\nTeeth Cleaning\nX-Ray / Diagnosis\nEmergency Care\nOther",
+  book_perks:"Open Monday–Sunday, 9 AM – 9 PM\nInstant WhatsApp confirmation\nEmergency same-day slots available\nNew patients warmly welcomed\nFree initial dental consultation",
+  con_label:"Find Us",con_title:"Visit Our Clinic",
+  con_address:"Opposite Sri Rama tiffin parlour, beside HP petrol bunk, Day & Night Junction, Day&Night Area, Shanti Nagar Colony, Balaga, Srikakulam, Andhra Pradesh 532001",
+  con_phone:"08500618926",con_phone_display:"085006 18926",
+  con_hours1:"Monday – Sunday",con_hours2:"9:00 AM – 9:00 PM (All Days)",
+  con_gmaps:"https://maps.google.com/?q=Sarojini+Laser+Implant+Orthodontic+Dental+Clinic+Srikakulam",
+  con_wa:"918500618926",
+  con_map_embed:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3787.8802481796793!2d83.89422429999999!3d18.307083799999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3c151f161b938d%3A0x151c1bac393988fb!2sSarojini%20Laser%2C%20Implant%20and%20Orthodontic%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1780500588229!5m2!1sen!2sin",
+  foot_name:"Sarojini Laser, Implant & Orthodontic Dental Clinic",
+  foot_desc:"Srikakulam's most trusted destination for comprehensive, advanced dental care. Transforming smiles with compassion and cutting-edge technology.",
+  foot_rating:"Rated 4.9/5 · 100+ Google Reviews",
+  foot_copy:"© 2025 Sarojini Laser, Implant & Orthodontic Dental Clinic, Srikakulam. All rights reserved.",
+  foot_services:"Dental Implants\nOrthodontics & Aligners\nLaser Dentistry\nTeeth Whitening\nVeneers & Crowns\nRoot Canals\nOral Surgery",
+  brand_name:"Sarojini Dental",brand_tagline:"Laser · Implant · Orthodontics",
+  seo_title:"Sarojini Laser, Implant & Orthodontic Dental Clinic | Srikakulam's #1 Dental Clinic",
+  seo_desc:"Sarojini Laser, Implant and Orthodontic Dental Clinic in Srikakulam – Top-rated dental care with Dr. Vijay Muddada MDS & Dr. Lahari Perepu MDS. Book your appointment today!",
+  seo_kw:"dental clinic srikakulam, best dentist srikakulam, dental implants srikakulam, orthodontics srikakulam, laser dentistry, teeth whitening srikakulam, Dr Vijay Muddada, Dr Lahari Perepu",
+  seo_og_img:"d1.webp",seo_ga:"",
+  stats:[{num:"5000+",label:"Happy Patients"},{num:"15+",label:"Years Experience"},{num:"4.9★",label:"Google Rating"}],
+  reviews:[
+    {name:"Ravi Kumar",loc:"Srikakulam",stars:5,text:"Dr. Vijay Muddada is an exceptional doctor. I had my dental implant procedure done here and the result is absolutely flawless. The entire team is professional and the clinic is immaculately clean. Highly recommend!"},
+    {name:"Padmavathi S.",loc:"Srikakulam",stars:5,text:"Dr. Lahari did an amazing job with my veneers! She has such a gentle hand and amazing attention to detail. My smile has completely transformed. Best prosthodontist in Srikakulam without doubt!"},
+    {name:"Akhil Teja",loc:"Srikakulam",stars:5,text:"Got my braces done here and the entire orthodontic journey was smooth. The team was always patient with my questions and the results are fantastic. My teeth are perfectly aligned now!"},
+    {name:"Sujatha Murali",loc:"Vizianagaram",stars:5,text:"Had a root canal done at Sarojini Dental and I was nervous at first. But the doctor made it completely painless! Modern equipment, great hygiene and very affordable. Couldn't ask for more."},
+    {name:"Vijaya Ramesh",loc:"Srikakulam",stars:5,text:"I brought my 8-year-old son for his first dental visit and the staff were absolutely wonderful with him. He wasn't scared at all! The paediatric dentistry here is outstanding."},
+    {name:"Naveen Kiran",loc:"Srikakulam",stars:5,text:"Best dental clinic in entire Srikakulam district! The laser teeth whitening gave me results I never thought possible. Dr. Vijay and Dr. Lahari are truly gifted professionals."}
+  ],
+  slots:[
+    {time:"9:00 AM",booked:false},{time:"9:30 AM",booked:false},{time:"10:00 AM",booked:true},
+    {time:"10:30 AM",booked:false},{time:"11:00 AM",booked:false},{time:"11:30 AM",booked:true},
+    {time:"12:00 PM",booked:false},{time:"2:00 PM",booked:false},{time:"3:00 PM",booked:false},
+    {time:"4:00 PM",booked:false},{time:"5:00 PM",booked:true},{time:"6:00 PM",booked:false},
+    {time:"7:00 PM",booked:false},{time:"7:30 PM",booked:false},{time:"8:00 PM",booked:false}
+  ]
+};
+
+// ═══════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════
+let D = {};
+let siteSyncChannel = null;
+
+try {
+  siteSyncChannel = new BroadcastChannel('sd_site_sync');
+} catch (e) {
+  siteSyncChannel = null;
+}
+
+function cloneDefaults(){return JSON.parse(JSON.stringify(DEFAULTS));}
+
+async function loadD(){
+  try { await window._sd_firebase_ready; } catch(e) {}
+
+  // Firestore is the source of truth. localStorage is only a cache/fallback.
+  if(window._sd_db && typeof window._sd_db.loadConfig === 'function'){
+    try{
+      const remote = await window._sd_db.loadConfig();
+      if(remote && typeof remote === 'object'){
+        D = Object.assign(cloneDefaults(), remote);
+        localStorage.setItem('sd_config', JSON.stringify(D));
+        updateFirebaseStatus(true, 'Connected to Firebase. Loaded live website content.');
+        return;
+      }
+    }catch(e){
+      console.warn('Firestore config load failed', e);
+      updateFirebaseStatus(false, 'Could not load live content from Firebase. Using local cache.');
+    }
+  }
+
+  try{
+    const raw=localStorage.getItem('sd_config');
+    D=raw?Object.assign(cloneDefaults(),JSON.parse(raw)):cloneDefaults();
+  }catch(e){ D=cloneDefaults(); }
+}
+
+// ═══════════════════════════════════════════════
+//  AUTH — SHA-256 hashed passwords
+// ═══════════════════════════════════════════════
+
+async function sha(s){
+  const b=new TextEncoder().encode(s);
+  const h=await crypto.subtle.digest('SHA-256',b);
+  return Array.from(new Uint8Array(h)).map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+
+async function doLogin(){
+  try { await window._sd_firebase_ready; } catch(e) {
+    showErr('Firebase could not be initialized. Check your internet connection and Firebase configuration.');
+    return;
+  }
+
+  const email=document.getElementById('lu').value.trim();
+  const password=document.getElementById('lp').value;
+
+  if(!email || !password){
+    showErr('Enter your Firebase admin email and password.');
+    return;
+  }
+
+  if(!window._sd_auth || typeof window._sd_signIn !== 'function'){
+    showErr('Firebase Authentication is not available.');
+    return;
+  }
+
+  try{
+    await window._sd_signIn(window._sd_auth, email, password);
+    localStorage.setItem('sd_user', email);
+    document.getElementById('loginWrap').style.display='none';
+    document.getElementById('mainApp').style.display='flex';
+    updateFirebaseStatus(true, 'Signed in as ' + email + '. Firestore publishing is enabled.');
+    await initAdmin();
+  }catch(e){
+    console.error('Firebase sign-in failed:', e);
+    showErr('Sign-in failed. Check the Firebase email/password.');
+    document.getElementById('lp').value='';
+  }
+}
+function showErr(m,ok){const e=document.getElementById('lerr');e.textContent=m;e.className=ok?'ok':'';e.style.display='block';clearTimeout(window._lerrT);window._lerrT=setTimeout(()=>e.style.display='none',ok?12000:4000);}
+async function doReset(){
+  try { await window._sd_firebase_ready; } catch(e) { showErr('Firebase could not be initialized. Check your internet connection.'); return; }
+  const email=document.getElementById('lu').value.trim();
+  if(!email){ showErr('Type your admin email above, then press Forgot password again.'); return; }
+  try{
+    await window._sd_resetPassword(window._sd_auth, email);
+    showErr('Reset link sent to '+email+'. Open it, set a new password, then sign in. Check spam if it does not arrive.', true);
+  }catch(e){
+    console.error('Password reset failed:', e);
+    showErr(e && e.code==='auth/invalid-email' ? 'That email address is not valid.' : 'Could not send the reset email. Check the address and try again.');
+  }
+}
+document.getElementById('lp').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+
+function doLogout(){
+  document.getElementById('mainApp').style.display='none';
+  document.getElementById('loginWrap').style.display='flex';
+  document.getElementById('lp').value='';
+}
+
+async function changePass(){
+  const n=document.getElementById('new_pass').value;
+  const c=document.getElementById('conf_pass').value;
+  if(!n){toast('Enter a new password',true);return;}
+  if(n.length<6){toast('Password must be at least 6 characters',true);return;}
+  if(n!==c){toast('Passwords do not match',true);return;}
+
+  if(!window._sd_auth || !window._sd_auth.currentUser || typeof window._sd_updatePassword !== 'function'){
+    toast('You must be signed in with Firebase Authentication.',true);
+    return;
+  }
+
+  try{
+    await window._sd_updatePassword(window._sd_auth.currentUser, n);
+    updateFirebaseStatus(true,'Firebase Auth password updated successfully.');
+    toast('Password updated!');
+    document.getElementById('new_pass').value='';
+    document.getElementById('conf_pass').value='';
+  }catch(e){
+    console.error('Firebase Auth password update failed:', e);
+    toast('Password update failed. Sign out, sign in again, then retry.',true);
+  }
+}
+
+// ═══════════════════════════════════════════════
+//  NAVIGATION
+// ═══════════════════════════════════════════════
+function nav(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
+  if(el)el.classList.add('active');
+  document.getElementById('tbtitle').textContent=el?el.textContent.trim():id;
+}
+function qn(id){return document.querySelector('.ni[onclick*="\''+id+'\'"]');}
+
+// ═══════════════════════════════════════════════
+//  FIELD IDs
+// ═══════════════════════════════════════════════
+const FIDS=[
+  'hero_badge','hero_headline','hero_highlight','hero_sub','hero_img','hero_btn1_text','hero_btn1_link','hero_btn2_text',
+  'hero_rating','hero_stars','hero_reviews','marquee_items',
+  'feat_label','feat_title','feat_desc','srv_label','srv_title','srv_desc','all_services',
+  'doc_label','doc_title','doc_desc','about_label','about_title','about_desc',
+  'about_img1','about_img2','about_img3','about_btn','about_btn_link',
+  'testi_label','testi_title','testi_rating','testi_count',
+  'book_label','book_title','book_desc','book_wa','book_phone','book_wa_msg','book_services','book_perks',
+  'con_label','con_title','con_address','con_phone','con_phone_display','con_hours1','con_hours2','con_gmaps','con_wa','con_map_embed',
+  'foot_name','foot_desc','foot_rating','foot_copy','foot_services',
+  'brand_name','brand_tagline','seo_title','seo_desc','seo_kw','seo_og_img','seo_ga'
+];
+
+function loadFields(){FIDS.forEach(id=>{const el=document.getElementById(id);if(el&&D[id]!=null)el.value=D[id];});}
+function collectFields(){FIDS.forEach(id=>{const el=document.getElementById(id);if(el)D[id]=el.value;});}
+
+// ═══════════════════════════════════════════════
+//  RENDER DYNAMIC SECTIONS
+// ═══════════════════════════════════════════════
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function updateFirebaseStatus(ok,message){
+  const bar=document.getElementById('fbStatus');
+  if(!bar) return;
+  bar.classList.remove('ok','err');
+  bar.classList.add(ok?'ok':'err');
+  bar.querySelector('span').textContent=message;
+  bar.querySelector('use').setAttribute('href',ok?'#si-check':'#si-warn');
+}
+
+function renderStats(){
+  document.getElementById('stats-list').innerHTML=D.stats.map((s,i)=>`
+    <div class="li">
+      <div class="lib" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div><label class="lbl">Number (e.g. 5000+)</label><input type="text" value="${esc(s.num)}" onchange="D.stats[${i}].num=this.value"></div>
+        <div><label class="lbl">Label (e.g. Happy Patients)</label><input type="text" value="${esc(s.label)}" onchange="D.stats[${i}].label=this.value"></div>
+      </div>
+      <div class="lia"><button class="ib d" onclick="D.stats.splice(${i},1);renderStats()" title="Remove"><svg viewBox="0 0 24 24"><use href="#si-trash"/></svg></button></div>
+    </div>`).join('');
+}
+function addStat(){D.stats.push({num:"0+",label:"New Stat"});renderStats();}
+
+const ICON_OPTS=[
+  {id:"icon-laser",label:"Laser / Technology"},{id:"icon-tooth",label:"Tooth / Dental"},
+  {id:"icon-clipboard",label:"Treatment Plan"},{id:"icon-shield",label:"Safety / Protection"},
+  {id:"icon-star",label:"Star / Excellence"},{id:"icon-check-circle",label:"Checkmark"},
+  {id:"icon-clock",label:"Time / Hours"},{id:"icon-calendar",label:"Calendar"}
+];
+function iconSel(val,cb){
+  return`<select onchange="${cb}" style="width:100%">${ICON_OPTS.map(o=>`<option value="${o.id}"${val===o.id?' selected':''}>${o.label}</option>`).join('')}</select>`;
+}
+
+function renderFeatures(){
+  document.getElementById('features-list').innerHTML=D.features.map((f,i)=>`
+    <div class="li" style="flex-direction:column;gap:10px">
+      <div style="display:flex;justify-content:space-between;width:100%;align-items:center">
+        <span style="font-size:0.83rem;font-weight:600">${esc(f.title)}</span>
+        <button class="ib d" onclick="D.features.splice(${i},1);renderFeatures()" title="Remove"><svg viewBox="0 0 24 24"><use href="#si-trash"/></svg></button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 2fr;gap:10px;width:100%">
+        <div><label class="lbl">Icon</label>${iconSel(f.icon,`D.features[${i}].icon=this.value`)}</div>
+        <div><label class="lbl">Title</label><input type="text" value="${esc(f.title)}" onchange="D.features[${i}].title=this.value"></div>
+        <div><label class="lbl">Description</label><input type="text" value="${esc(f.desc)}" onchange="D.features[${i}].desc=this.value"></div>
+      </div>
+    </div>`).join('');
+}
+function addFeature(){D.features.push({icon:"icon-tooth",title:"New Feature",desc:"Description here."});renderFeatures();}
+
+function renderServices(){
+  document.getElementById('services-list').innerHTML=D.services.map((s,i)=>`
+    <div class="li" style="flex-direction:column;gap:10px">
+      <div style="display:flex;justify-content:space-between;width:100%;align-items:center">
+        <span style="font-size:0.83rem;font-weight:600">${esc(s.tag)} — ${esc(s.name)}</span>
+        <button class="ib d" onclick="D.services.splice(${i},1);renderServices()" title="Remove"><svg viewBox="0 0 24 24"><use href="#si-trash"/></svg></button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%">
+        <div><label class="lbl">Category Tag (e.g. Cosmetic)</label><input type="text" value="${esc(s.tag)}" onchange="D.services[${i}].tag=this.value"></div>
+        <div><label class="lbl">Treatment Name</label><input type="text" value="${esc(s.name)}" onchange="D.services[${i}].name=this.value"></div>
+      </div>
+      <div style="width:100%"><label class="lbl">Short Description</label><textarea style="min-height:50px" onchange="D.services[${i}].desc=this.value">${esc(s.desc)}</textarea></div>
+      <div style="width:100%"><label class="lbl">Photo URL</label><input type="url" value="${esc(s.img)}" onchange="D.services[${i}].img=this.value"></div>
+    </div>`).join('');
+}
+function addService(){D.services.push({tag:"General",name:"New Treatment",desc:"Description.",img:""});renderServices();}
+
+function renderDoctors(){
+  document.getElementById('doctors-list').innerHTML=D.doctors.map((d,i)=>`
+    <div class="card" style="margin-bottom:14px">
+      <div class="ch">
+        <div class="chl"><div class="chi"><svg viewBox="0 0 24 24"><use href="#si-doctor"/></svg></div><div class="ct">${esc(d.name)}</div></div>
+        <button class="ib d" onclick="if(confirm('Remove this doctor?')){D.doctors.splice(${i},1);renderDoctors();}" title="Remove"><svg viewBox="0 0 24 24"><use href="#si-trash"/></svg></button>
+      </div>
+      <div class="cb">
+        <div class="g2">
+          <div class="fl"><label class="lbl">Role / Specialty</label><input type="text" value="${esc(d.specialty)}" onchange="D.doctors[${i}].specialty=this.value"></div>
+          <div class="fl"><label class="lbl">Doctor's Full Name</label><input type="text" value="${esc(d.name)}" onchange="D.doctors[${i}].name=this.value;renderDoctors()"></div>
+        </div>
+        <div class="fl"><label class="lbl">Qualifications (e.g. MDS, Prosthodontist)</label><input type="text" value="${esc(d.credentials)}" onchange="D.doctors[${i}].credentials=this.value"></div>
+        <div class="fl"><label class="lbl">Doctor's Bio</label><textarea onchange="D.doctors[${i}].bio=this.value">${esc(d.bio)}</textarea></div>
+        <div class="fl"><label class="lbl">Doctor's Photo URL</label><input type="url" value="${esc(d.img)}" onchange="D.doctors[${i}].img=this.value"><div class="hint">e.g. images/Vijay.png or any https:// link</div></div>
+      </div>
+    </div>`).join('');
+  document.getElementById('d-doctors').textContent=D.doctors.length;
+}
+function addDoctor(){D.doctors.push({specialty:"Specialist",name:"Dr. New Doctor",credentials:"MDS",bio:"Doctor bio here.",img:""});renderDoctors();}
+
+function renderAboutPoints(){
+  document.getElementById('about-points-list').innerHTML=D.aboutPoints.map((p,i)=>`
+    <div class="li">
+      <div class="lib"><input type="text" value="${esc(p)}" onchange="D.aboutPoints[${i}]=this.value" style="width:100%"></div>
+      <div class="lia"><button class="ib d" onclick="D.aboutPoints.splice(${i},1);renderAboutPoints()" title="Remove"><svg viewBox="0 0 24 24"><use href="#si-trash"/></svg></button></div>
+    </div>`).join('');
+}
+function addAboutPoint(){D.aboutPoints.push("New point here");renderAboutPoints();}
+
+let _eRev=-1,_stars=5;
+function renderReviews(){
+  document.getElementById('reviews-list').innerHTML=D.reviews.map((r,i)=>`
+    <div class="li">
+      <div class="lib">
+        <div class="lit">${'★'.repeat(r.stars||5)} ${esc(r.name)} — ${esc(r.loc)}</div>
+        <div class="lis">${esc((r.text||'').substring(0,90))}${(r.text||'').length>90?'…':''}</div>
+      </div>
+      <div class="lia">
+        <button class="ib ed" onclick="editRev(${i})" title="Edit"><svg viewBox="0 0 24 24"><use href="#si-edit"/></svg></button>
+        <button class="ib d" onclick="D.reviews.splice(${i},1);renderReviews()" title="Remove"><svg viewBox="0 0 24 24"><use href="#si-trash"/></svg></button>
+      </div>
+    </div>`).join('');
+  document.getElementById('d-reviews').textContent=D.reviews.length;
+}
+function addReview(){
+  _eRev=-1;
+  document.getElementById('r_name').value='';
+  document.getElementById('r_loc').value='';
+  document.getElementById('r_text').value='';
+  setStar(5);
+  document.getElementById('revModalTitle').textContent='Add Patient Review';
+  openMov('revModal');
+}
+function editRev(i){
+  _eRev=i;
+  const r=D.reviews[i];
+  document.getElementById('r_name').value=r.name||'';
+  document.getElementById('r_loc').value=r.loc||'';
+  document.getElementById('r_text').value=r.text||'';
+  setStar(r.stars||5);
+  document.getElementById('revModalTitle').textContent='Edit Review';
+  openMov('revModal');
+}
+function saveReview(){
+  const rv={name:document.getElementById('r_name').value||'Anonymous',loc:document.getElementById('r_loc').value||'Srikakulam',stars:_stars,text:document.getElementById('r_text').value};
+  if(!rv.text){toast('Please enter the review text',true);return;}
+  if(_eRev>=0)D.reviews[_eRev]=rv;else D.reviews.push(rv);
+  renderReviews();closeMov('revModal');toast('Review saved!');
+}
+function setStar(n){_stars=n;document.querySelectorAll('#rStars .star').forEach((b,i)=>b.classList.toggle('on',i<n));}
+
+function renderSlots(){
+  document.getElementById('slots-admin').innerHTML=D.slots.map((s,i)=>`
+    <div class="sp${s.booked?' bk':''}" onclick="D.slots[${i}].booked=!D.slots[${i}].booked;renderSlots()" title="Click to toggle">
+      <button class="spx" onclick="event.stopPropagation();D.slots.splice(${i},1);renderSlots()">✕</button>
+      <div class="spt">${esc(s.time)}</div>
+      <div class="sps">${s.booked?'🔴 Booked':'🟢 Available'}</div>
+    </div>`).join('');
+  document.getElementById('d-slots').textContent=D.slots.filter(s=>!s.booked).length;
+}
+function addSlot(){
+  const t=document.getElementById('new-slot-time').value;
+  if(!t){toast('Pick a time first',true);return;}
+  const[h,m]=t.split(':');const hr=parseInt(h);const ap=hr>=12?'PM':'AM';const h12=hr%12||12;
+  const label=`${h12}:${m} ${ap}`;
+  if(D.slots.find(s=>s.time===label)){toast('Slot already exists',true);return;}
+  D.slots.push({time:label,booked:false});
+  D.slots.sort((a,b)=>{
+    const tm=t=>{const[ti,ap]=t.split(' ');const[hh,mm]=ti.split(':');return(parseInt(hh)%12+(ap==='PM'?12:0))*60+parseInt(mm);};
+    return tm(a.time)-tm(b.time);
+  });
+  renderSlots();
+  document.getElementById('new-slot-time').value='';
+}
+
+// ═══════════════════════════════════════════════
+//  SAVE & PUBLISH — writes to localStorage → index.html updates via storage event
+// ═══════════════════════════════════════════════
+async function saveAll(){
+  collectFields();
+  try { await window._sd_firebase_ready; } catch(e) {}
+
+  if(!window._sd_db || typeof window._sd_db.saveConfig !== 'function'){
+    updateFirebaseStatus(false,'Firebase is unavailable. Nothing was published.');
+    toast('❌ Publish failed — Firebase is not connected.',true);
+    return;
+  }
+
+  try{
+    // Cloud write FIRST. A publish is successful only after Firestore confirms it.
+    await window._sd_db.saveConfig(D);
+
+    // Cache only after successful cloud write.
+    localStorage.setItem('sd_config',JSON.stringify(D));
+
+    // Convenience sync for already-open tabs on this same device.
+    try{
+      window.dispatchEvent(new StorageEvent('storage',{key:'sd_config',newValue:JSON.stringify(D)}));
+    }catch(e){}
+    if(siteSyncChannel){
+      try{siteSyncChannel.postMessage({type:'sd-config',config:D});}catch(e){}
+    }
+
+    updateFirebaseStatus(true,'Published to Firebase successfully. All devices will use this version.');
+    toast('✅ Published successfully.');
+  }catch(e){
+    console.error('Firestore publish failed:',e);
+    updateFirebaseStatus(false,'Publish failed. Your changes were NOT published to the website.');
+    toast('❌ Publish failed — check Firebase/Firestore rules.',true);
+  }
+}
+
+// ═══════════════════════════════════════════════
+//  MODALS + TOAST
+// ═══════════════════════════════════════════════
+function openMov(id){document.getElementById(id).classList.add('open');}
+function closeMov(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.mov').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
+
+let _tt;
+function toast(msg,err=false){
+  const t=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  const ic=document.getElementById('toast-icon');
+  ic.querySelector('use').setAttribute('href',err?'#si-warn':'#si-check');
+  ic.style.stroke=err?'var(--rd)':'var(--gr)';
+  t.classList.toggle('err',err);t.classList.add('show');
+  clearTimeout(_tt);_tt=setTimeout(()=>t.classList.remove('show'),3500);
+}
+
+// ═══════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════
+async function initAdmin(){
+  try { await window._sd_firebase_ready; } catch(e) {}
+  await loadD();
+  loadFields();
+  renderStats();renderFeatures();renderServices();renderDoctors();
+  renderAboutPoints();renderReviews();renderSlots();
+  const fb = window._sd_fbStatus || {ok:false,message:'Firebase sync not connected yet.'};
+  updateFirebaseStatus(fb.ok, fb.message);
+}
+</script>
+</body>
+</html>
